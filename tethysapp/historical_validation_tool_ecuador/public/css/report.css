@@ -1,0 +1,67 @@
+/* BODY */
+body {
+    overflow-y: auto !important;
+    background-color: lightgrey;
+}
+
+/* SCROLL BAR */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: white; 
+}
+::-webkit-scrollbar-thumb {
+    background: lightgray; 
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: gray; 
+}
+
+
+.app-container{
+    width: 700px; /*826px; height: 1142px;*/
+    background-color: white;
+    margin: auto;
+}
+
+.report-container{
+    width: 640px; /*826px; height: 1142px;*/
+    background-color: white;
+    margin: auto;
+    font-size: 14px !important;
+}
+
+.map{
+    width: 280px !important;
+    margin: auto;
+}
+
+.text-region{
+    font-size: 12px !important;
+}
+.img-title{
+    font-size: 14px !important;
+}
+
+
+
+.title-01{
+    font-size: 22px !important; 
+    font-weight: bold;
+    color: #0066CC;
+}
+.title-02{
+    font-size: 20px !important;
+}
+.title-03{
+    font-size: 16px !important;
+}
+.title-04{
+    font-size: 20px !important; 
+    color: #31849B;
+}
+.breakpage{
+    height: 0px;
+}

@@ -1,3 +1,8 @@
+:root{
+    --panel-width: 330px;
+    --navbar-height: 50px;
+}
+
 body {
     overflow-y: hidden !important;
 }
@@ -13,20 +18,48 @@ body {
 }
 
 #app-content {
-    min-height: 50% !important;
+    min-height: calc("100% - 50px") !important;
     height: calc("100% - 50px") !important;
     overflow: hidden !important;
 }
 
 #app-header .tethys-app-header {
     height: 50px !important;
+    box-shadow: 0 0 10px rgba(0,0,0,1), 0 2px 4px rgba(0,0,0,1) !important;
+}
+
+#app-header .tethys-app-header #nav-title-wrapper .icon-wrapper img {
+    height: 35px !important;
+    border-radius: 30% !important;
+    margin: 0 0 0 5px !important;
 }
 
 .app-title {
-    font-size: 21px !important;
-    font-weight: 600;
+    font: Roboto, Helvetica Neue, sans-serif !important; 
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    vertical-align: middle !important;
+    padding-left: 15px !important;
+    letter-spacing: 1px !important;
 }
 
 .icon-wrapper {
     margin-left: 15px !important;
+} 
+
+
+#panel-container {
+    width: var(--panel-width) !important;
+    background-color: var(--app-primary-color);
+    height: calc(100vh - var(--navbar-height)) !important;
+    float: left;
+    opacity: 0.95 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+#map-container {
+    width: calc(100vw - var(--panel-width)) !important;
+    height: calc(100vh - var(--navbar-height)) !important;
+    float: left;
 }

@@ -32,7 +32,7 @@ To learn more about writing tests, see:
     https://docs.tethysplatform.org/en/stable/tethys_sdk/testing.html
 """
 
-class HistoricalValidationToolEcuadorTestCase(TethysTestCase):
+class HydroviewerEcuadorTestCase(TethysTestCase):
     """
     In this class you may define as many functions as you'd like to test different aspects of your app.
     Each function must start with the word "test" for it to be recognized and executed during testing.
@@ -46,7 +46,7 @@ class HistoricalValidationToolEcuadorTestCase(TethysTestCase):
         place that code here. For example, if you are testing against any persistent stores, you should call the
         test database creation function here, like so:
 
-            self.create_test_persistent_stores_for_app(HistoricalValidationToolEcuador)
+            self.create_test_persistent_stores_for_app(HydroviewerEcuador)
 
         If you are testing against a controller that check for certain user info, you can create a fake test user and
         get a test client, like so:
@@ -76,7 +76,7 @@ class HistoricalValidationToolEcuadorTestCase(TethysTestCase):
         that took place before execution of the test functions. If you are testing against any persistent
         stores, you should call the test database destruction function from here, like so:
 
-            self.destroy_test_persistent_stores_for_app(HistoricalValidationToolEcuador)
+            self.destroy_test_persistent_stores_for_app(HydroviewerEcuador)
 
         NOTE: You do not have to set these functions up here, but if they are not placed here and are needed
         then they must be placed at the very end of your individual test functions. Also, if certain
@@ -133,7 +133,7 @@ class HistoricalValidationToolEcuadorTestCase(TethysTestCase):
         c.force_login(user)
 
         # Have the test client "browse" to your home page
-        response = c.get('/apps/historical-validation-tool-ecuador/')  # The final '/' is essential for all pages/controllers
+        response = c.get('/apps/hydroviewer-ecuador/')  # The final '/' is essential for all pages/controllers
 
         # Test that the request processed correctly (with a 200 status code)
         self.assertEqual(response.status_code, 200)
