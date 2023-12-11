@@ -138,8 +138,9 @@ def get_data(request):
     corrected_data_plot = get_historic_simulation(
         sim = simulated_data, 
         cor = corrected_data, 
-        obs = observed_data, 
-        comid = station_comid)
+        obs = observed_data,
+        code = station_code,
+        name = station_name)
     
     # Daily averages plot
     daily_average_plot = get_daily_average_plot(

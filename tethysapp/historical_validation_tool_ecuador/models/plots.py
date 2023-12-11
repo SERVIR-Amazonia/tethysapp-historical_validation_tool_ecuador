@@ -76,12 +76,12 @@ def get_daily_average_plot(sim, cor, code, name):
     daily_avg_sim = hd.daily_average(sim)
     daily_avg_cor = hd.daily_average(cor)
     # Generate the plots on Ploty
-    daily_avg_obs_Q = go.Scatter(x = daily_avg_sim.index, y = daily_avg_sim.iloc[:, 1].values, name = 'Observador', )
+    daily_avg_obs_Q = go.Scatter(x = daily_avg_sim.index, y = daily_avg_sim.iloc[:, 1].values, name = 'Observado', )
     daily_avg_sim_Q = go.Scatter(x = daily_avg_sim.index, y = daily_avg_sim.iloc[:, 0].values, name = 'Simulado', )
     daily_avg_corr_sim_Q = go.Scatter(x = daily_avg_cor.index, y = daily_avg_cor.iloc[:, 0].values, name = 'Corregido', )
     # PLot Layout
     layout = go.Layout(
-        title='Caudal medio multi-diario<br>Station: {0} - {1}'.format(str(code).upper(), name),
+        title='Caudal medio multi-diario<br>{0} - {1}'.format(str(code).upper(), name),
         xaxis=dict(title='Día del año'), 
         yaxis=dict(title='Caudal (m<sup>3</sup>/s)', autorange=True),
         plot_bgcolor='white',
@@ -101,7 +101,7 @@ def get_monthly_average_plot(sim, cor, code, name):
     monthly_avg_sim = hd.monthly_average(sim)
     monthly_avg_cor = hd.monthly_average(cor)
     # Generate the plots on Ploty
-    monthly_avg_obs_Q = go.Scatter(x = monthly_avg_sim.index, y = monthly_avg_sim.iloc[:, 1].values, name = 'Observador', )
+    monthly_avg_obs_Q = go.Scatter(x = monthly_avg_sim.index, y = monthly_avg_sim.iloc[:, 1].values, name = 'Observado', )
     monthly_avg_sim_Q = go.Scatter(x = monthly_avg_sim.index, y = monthly_avg_sim.iloc[:, 0].values, name = 'Simulado', )
     monthly_avg_corr_sim_Q = go.Scatter(x = monthly_avg_cor.index, y = monthly_avg_cor.iloc[:, 0].values, name = 'Corregido', )
     # PLot Layout
@@ -182,16 +182,16 @@ def get_acumulated_volume_plot(sim, cor, code, name):
     obs_volume = obs_array.cumsum()
     cor_volume = cor_array.cumsum()
     # Generate plots
-    observed_volume  = go.Scatter(x = merged_sim.index, y = obs_volume, name='Observed', )
-    simulated_volume = go.Scatter(x = merged_sim.index, y = sim_volume, name='Simulated', )
-    corrected_volume = go.Scatter(x = merged_cor.index, y = cor_volume, name='Corrected Simulated', )
+    observed_volume  = go.Scatter(x = merged_sim.index, y = obs_volume, name='Observado', )
+    simulated_volume = go.Scatter(x = merged_sim.index, y = sim_volume, name='Simulado', )
+    corrected_volume = go.Scatter(x = merged_cor.index, y = cor_volume, name='Corregido', )
     # Plot layouts
     # Plot layouts
     layout = go.Layout(
                 title='Volumen acumulado simulado <br>{0} - {1}'.format(str(code).upper(), name),
                 xaxis=dict(title='Fecha', ), 
                 yaxis=dict(title='Volumen (Mm<sup>3</sup>)', autorange=True),
-                showlegend=False,
+                showlegend=True,
                 template='simple_white')
     # Integrating the plots
     chart_obj = go.Figure(data=[observed_volume, simulated_volume, corrected_volume], layout=layout)
@@ -204,7 +204,7 @@ def get_acumulated_volume_plot(sim, cor, code, name):
 
 
 
-def get_historic_simulation(sim, cor, obs, comid):
+def get_historic_simulation(sim, cor, obs, code, name):
     dates = sim.index.tolist()
     startdate = dates[0]
     enddate = dates[-1]
@@ -226,7 +226,7 @@ def get_historic_simulation(sim, cor, obs, comid):
         go.Scatter(name='Datos observados', x=observed_data['x_datetime'], y=observed_data['y_flow'])
     ]
     layout = go.Layout(
-        title=f"Simulación histórica <br>COMID: {comid}",
+        title=f"Simulación histórica <br>{str(code).upper()} - {name}",
         yaxis={'title': 'Caudal (m<sup>3</sup>/s)', 'range': [0, 'auto']},
         xaxis={'title': 'Fecha (UTC +0:00)', 'range': [startdate, enddate], 'hoverformat': '%b %d %Y', 'tickformat': '%Y'},
     )
