@@ -43,7 +43,7 @@
   var url = 'https://geoserver.hydroshare.org/geoserver/HS-e1920951d6194c78948e45ae7b08ec64/wfs';
   var params = {
     service: 'WFS',
-    version: '1.1.0',
+    version: '1.0.0',     
     request: 'GetFeature',
     typeName: 'Advertencia',
     outputFormat: 'application/json'

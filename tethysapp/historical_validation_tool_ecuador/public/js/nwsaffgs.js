@@ -245,7 +245,7 @@ legend_ffr24.onAdd = function(map) {
 // ------------------------------------------------------------------------------------- //
 
 // Add nwsaffgs data
-fetch('https://geoserver.hydroshare.org/geoserver/HS-352379cf82444fd099eca8bfc662789b/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=nwsaffds&maxFeatures=20000&outputFormat=application/json', {
+fetch('https://geoserver.hydroshare.org/geoserver/HS-352379cf82444fd099eca8bfc662789b/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=nwsaffds&maxFeatures=20000&outputFormat=application/json', {
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
 })

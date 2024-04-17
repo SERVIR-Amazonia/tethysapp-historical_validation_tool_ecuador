@@ -23,7 +23,7 @@ L.control.zoom({
 
 
 // Add drainage network
-fetch('https://geoserver.hydroshare.org/geoserver/HS-77951ba9bcf04ac5bc68ae3be2acfd90/wfs?service=WFS&version=1.1.0&request=GetFeature&typeName=ecuador-geoglows-drainage&outputFormat=application/json', {
+fetch('https://geoserver.hydroshare.org/geoserver/HS-77951ba9bcf04ac5bc68ae3be2acfd90/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=ecuador-geoglows-drainage&outputFormat=application/json', {
     method: 'GET',
     headers: {'Content-Type': 'application/json'}
 })
