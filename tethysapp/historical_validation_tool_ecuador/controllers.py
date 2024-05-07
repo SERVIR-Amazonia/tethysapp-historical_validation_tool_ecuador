@@ -23,7 +23,7 @@ from .app import HistoricalValidationToolEcuador as app
 from .models.data import *
 from .models.plots import *
 
-
+import requests
 
 ####################################################################################################
 ##                                       STATUS VARIABLES                                         ##
@@ -433,3 +433,51 @@ def get_corrected_forecast_xlsx(request):
     response['Content-Disposition'] = 'attachment; filename=corrected_ensemble_forecast.xlsx'
     response.write(output.getvalue())
     return response
+
+
+
+@controller(name='get_drainage_json', url='{0}/get-drainage-json'.format(APP_URL))
+def get_drainage_json(request):
+    # Reemplaza 'URL_DEL_GEOJSON' con la URL real de tu archivo GeoJSON
+    url_geojson = 'https://geoserver.hydroshare.org/geoserver/HS-77951ba9bcf04ac5bc68ae3be2acfd90/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=ecuador-geoglows-drainage&outputFormat=application/json'
+    try:
+        # Descargar el GeoJSON desde la URL
+        response = requests.get(url_geojson)
+        response.raise_for_status()  # Verificar si la solicitud fue exitosa
+        geojson_data = response.json()  # Convertir la respuesta a JSON
+        # Devolver el GeoJSON como respuesta JSON
+        return JsonResponse(geojson_data, safe=False)
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({'error': f'Error al obtener el GeoJSON: {str(e)}'}, status=500)
+
+
+@controller(name='get_ffgs_json', url='{0}/get-ffgs-json'.format(APP_URL))
+def get_ffgs_json(request):
+    # Reemplaza 'URL_DEL_GEOJSON' con la URL real de tu archivo GeoJSON
+    url_geojson = 'https://geoserver.hydroshare.org/geoserver/HS-352379cf82444fd099eca8bfc662789b/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=nwsaffds&maxFeatures=20000&outputFormat=application/json'
+    try:
+        # Descargar el GeoJSON desde la URL
+        response = requests.get(url_geojson)
+        response.raise_for_status()  # Verificar si la solicitud fue exitosa
+        geojson_data = response.json()  # Convertir la respuesta a JSON
+        # Devolver el GeoJSON como respuesta JSON
+        return JsonResponse(geojson_data, safe=False)
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({'error': f'Error al obtener el GeoJSON: {str(e)}'}, status=500)
+
+
+@controller(name='get_warnings_json', url='{0}/get-warnings-json'.format(APP_URL))
+def get_warnings_json(request):
+    # Reemplaza 'URL_DEL_GEOJSON' con la URL real de tu archivo GeoJSON
+    url_geojson = 'https://geoserver.hydroshare.org/geoserver/HS-e1920951d6194c78948e45ae7b08ec64/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=Advertencia&outputFormat=application/json'
+    try:
+        # Descargar el GeoJSON desde la URL
+        response = requests.get(url_geojson)
+        response.raise_for_status()  # Verificar si la solicitud fue exitosa
+        geojson_data = response.json()  # Convertir la respuesta a JSON
+        # Devolver el GeoJSON como respuesta JSON
+        return JsonResponse(geojson_data, safe=False)
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({'error': f'Error al obtener el GeoJSON: {str(e)}'}, status=500)
+
+

@@ -39,23 +39,13 @@
     return(filteredFeatures )
   }
     
-  // URL y parametros del recurso de hydroshare
-  var url = 'https://geoserver.hydroshare.org/geoserver/HS-e1920951d6194c78948e45ae7b08ec64/wfs';
-  var params = {
-    service: 'WFS',
-    version: '1.0.0',     
-    request: 'GetFeature',
-    typeName: 'Advertencia',
-    outputFormat: 'application/json'
-  }; 
-    
-  // Carga los datos WFS utilizando AJAX y agrega los resultados a la capa geoJSON
-  $.ajax({
-    url: url,
-    data: params,
-    dataType: 'json'
-  }).done(function(response){
-      console.log("Funciona");
+  fetch("get-warnings-json", {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'},
+  })
+  .then(response => response.json())
+  .then(response => {
+    console.log("Funciona");
     alertas =  {
       type: 'FeatureCollection',
       features: filter_warnings(response, "Medio").concat(
@@ -63,7 +53,8 @@
                 filter_warnings(response, "Muy Alto")) };
     warnings.addData(alertas);
     console.log("Termina");
-  });
+  })
+  
   
   
 
